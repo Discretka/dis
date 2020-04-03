@@ -1,0 +1,12 @@
+int KOL_VO_(int chislo) //кол-во цифр в числе
+{
+    int k = 0;
+    chislo = abs(chislo);
+    while (chislo > 0)
+    {
+        k++;
+        chislo = chislo / 10;
+    }
+    if (k == 0) k = 1;
+    return k;
+}
