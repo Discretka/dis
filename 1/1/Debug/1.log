@@ -1,0 +1,12 @@
+﻿  1.cpp
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(148,9): warning C4101: buffer: неиспользованная локальная переменная
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(241,1): error C2084: функция "std::vector<int,std::allocator<int>> ADD_NN_N(std::vector<int,std::allocator<int>>,int,std::vector<int,std::allocator<int>>,int)" уже имеет текст реализации
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(75): message : см. предыдущее определение "ADD_NN_N"
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(277,17): error C2374: A: переопределение; множественная инициализация
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(275): message : см. объявление "A"
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(278,17): error C2374: B: переопределение; множественная инициализация
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(276): message : см. объявление "B"
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(279,22): error C2065: ADD_NN_N: необъявленный идентификатор
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(279,42): error C2440: инициализация: невозможно преобразовать "std::vector<int,std::allocator<int>> (__cdecl *)(std::vector<int,std::allocator<int>>,int,std::vector<int,std::allocator<int>>,int)" в "std::vector<int,std::allocator<int>>"
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(279,42): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+e:\Users\Елена\Desktop\дм\1\1\1.cpp(310,41): error C2065: С: необъявленный идентификатор
