@@ -8,7 +8,7 @@ void linked_list::reset()
 {
 	head = NULL;
 	tail = NULL;
-	kol_vo = 0;
+	size = 0;
 }
 linked_list::linked_list()
 {
@@ -17,12 +17,12 @@ linked_list::linked_list()
 
 linked_list::linked_list(int element)
 {
-	node* first_element = new node;
-	first_element->data = element;
-	first_element->next = NULL;
-	head = first_element;
-	tail = first_element;
-	kol_vo++;
+	node* current = new node;
+	current->data = element;
+	current->next = NULL;
+	head = current;
+	tail = current;
+	size++;
 }
 linked_list::~linked_list()
 {
@@ -33,173 +33,173 @@ void linked_list::push_back(int element)
 {
 	if (tail == NULL)
 	{	
-		node* first_element = new node;
-		first_element->data = element;
-		first_element->next = NULL;
-		head = first_element;
-		tail = first_element;
+		node* current = new node;
+		current->data = element;
+		current->next = NULL;
+		head = current;
+		tail = current;
 	}
 	else 
 	{
-		node* first_element = new node;
-		first_element->data = element;
-		first_element->next = NULL;
-		tail->next = first_element;
-		tail = first_element;
+		node* current = new node;
+		current->data = element;
+		current->next = NULL;
+		tail->next = current;
+		tail = current;
 	}
-	kol_vo++;
+	size++;
 }
 void linked_list::push_front(int element)
 {
 	if (head == NULL)
 	{
-		node* first_element = new node;
-		tail = first_element;
-		first_element->data = element;
-		first_element->next = NULL;
-		head = first_element;	
+		node* current = new node;
+		tail = current;
+		current->data = element;
+		current->next = NULL;
+		head = current;
 	}
 	else
 	{
-		node* first_element = new node;
-		first_element->next = head;
-		first_element->data = element;
-		head = first_element;
+		node* current = new node;
+		current->next = head;
+		current->data = element;
+		head = current;
 	}
-	kol_vo++;
+	size++;
 }
 void linked_list::pop_back()
 {
-	if (kol_vo == 0) throw out_of_range("\nEmpty list"); // exception
-	if (kol_vo == 1)
+	if (size == 0) throw out_of_range("\nEmpty list"); // exception
+	if (size == 1)
 	{
 		delete head;
 		reset();
-		kol_vo--;
+		size--;
 	}
 	else
 	{
-		first_element = head;
-		while (first_element->next != tail)
+		current = head;
+		while (current->next != tail)
 		{
-			first_element = first_element->next;
+			current = current->next;
 		}
-		first_element->next = NULL;
+		current->next = NULL;
 		delete tail;
-		tail = first_element;
-		kol_vo--;
+		tail = current;
+		size--;
 	}
 }
 void linked_list::pop_front()
 {
-	if (kol_vo == 0) throw out_of_range("\nEmpty list"); //exception
-	if (kol_vo == 1)
+	if (size == 0) throw out_of_range("\nEmpty list"); //exception
+	if (size == 1)
 	{
 		delete head;
 		reset();
-		kol_vo--;
+		size--;
 	}
 	else
 	{
-		first_element = head;
+		current = head;
 		head = head->next;
-		delete first_element; kol_vo--;
+		delete current; size--;
 	}
 }
 void linked_list::insert(int element, size_t index)
 {
 	if (index < 0)
 		throw out_of_range("\nIndex is less then 0");
-	if (index > kol_vo)
+	if (index > size)
 	{
 		throw out_of_range("\nIndex is greater than size of list");
 	}
 	if (index == 0) 
 	{
 		push_front(element); 
-		kol_vo++;
+		size++;
 	}
-	first_element = head;
-	if (index != 0 && index <= kol_vo)
+	current = head;
+	if (index != 0 && index <= size)
 	{
 		for (size_t i = 0; i < index - 1; i++) 
 		{
-			first_element = first_element->next;
+			current = current->next;
 		}
 		node* interposed = new node; 
 		interposed->data = element;
-		interposed->next = first_element->next;
-		first_element->next = interposed;
-		if (index == kol_vo-1)
-			tail = first_element; 
-		kol_vo++;
+		interposed->next = current->next;
+		current->next = interposed;
+		if (index == size -1)
+			tail = current;
+		size++;
 	}
 }
 int linked_list::at(size_t index)
 {
-	first_element = head;
+	current = head;
 	if (index < 0) throw out_of_range("\nIndex is less then 0");
-	if (index >= kol_vo) throw out_of_range("\nIndex is greater than size of list");
+	if (index >= size) throw out_of_range("\nIndex is greater than size of list");
 	else
 	{
 		for (size_t i = 0; i < index; i++) 
 		{
-			first_element = first_element->next;
+			current = current->next;
 		}
-		return first_element->data;
+		return current->data;
 	}
 }
 void linked_list::remove(size_t index)
 {
 	if (index < 0) throw out_of_range("\nIndex is less then 0");
-	if (index >= kol_vo) throw out_of_range("Index is greater than size of list");
+	if (index >= size) throw out_of_range("Index is greater than size of list");
 	if (index != 0)
 	{
-		if (kol_vo == 1 && index == 0)
+		if (size == 1 && index == 0)
 		{
 			delete head;
 			reset();
-			kol_vo--;
+			size--;
 		}
 		else
 		{
-			node* first_element = new node;
-			first_element = head;
+			node* current = new node;
+			current = head;
 			for (size_t i = 0; i < index - 1; i++) 
 			{
-				first_element = first_element->next;
+				current = current->next;
 			}
-			node* interposed = first_element->next;
-			first_element->next = interposed->next;
+			node* interposed = current->next;
+			current->next = interposed->next;
 			delete interposed;
-			kol_vo--;
+			size--;
 		}
 	}
 }
 size_t linked_list::get_size()
 {
-	return kol_vo;
+	return size;
 }
 void linked_list::print_to_console()
 {
-	if (kol_vo < 1) throw out_of_range("List is empty"); 
+	if (size < 1) throw out_of_range("List is empty");
 	else
 	{
-		first_element = head;
-		for (size_t i = 0; i < kol_vo; i++)
+		current = head;
+		for (size_t i = 0; i < size; i++)
 		{
-			cout << first_element->data << " ";
-			first_element = first_element->next;
+			cout << current->data << " ";
+			current = current->next;
 		}
 	}
 }
 void linked_list::clear()
 {
-	first_element = head;
-	for (size_t i = 0; i < kol_vo; i++) 
+	current = head;
+	for (size_t i = 0; i < size; i++)
 	{
-		node* interposed = first_element;
-		first_element = first_element->next;
+		node* interposed = current;
+		current = current->next;
 		delete interposed;
 	}
 	reset();
@@ -207,15 +207,15 @@ void linked_list::clear()
 void linked_list::set(size_t index, int element)
 {
 	if (index < 0) throw out_of_range("\nIndex is less then 0");
-	if (index >= kol_vo) throw out_of_range("\nIndex is greater than size of list");
+	if (index >= size) throw out_of_range("\nIndex is greater than size of list");
 	else
 	{
-		first_element = head;
+		current = head;
 		for (size_t i = 0; i < index; i++) 
 		{
-			first_element = first_element->next;
+			current = current->next;
 		}
-		first_element->data = element;
+		current->data = element;
 	}
 }
 bool linked_list::isEmpty()
@@ -227,9 +227,9 @@ bool linked_list::isEmpty()
 }
 void linked_list::push_back1(linked_list* first_list, linked_list* second_list)
 {
-	if (second_list->kol_vo == 0) return;
+	if (second_list->size == 0) return;
 	if (first_list->tail->next) first_list->tail = first_list->tail->next;
 	first_list->tail->next= second_list->head;
 	first_list->tail = second_list->tail;
-	kol_vo += second_list->kol_vo;
+	size += second_list->size;
 }

@@ -11,8 +11,8 @@ class linked_list  //singly linked integer list
 		void reset();
 		node* head;
 		node* tail;
-		node* first_element=0;
-		size_t kol_vo=0; 
+		node* current =0;
+		size_t size=0; 
 	public:
 		void push_back(int); 
 		void push_front(int); 
