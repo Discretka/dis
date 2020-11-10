@@ -11,7 +11,6 @@ class linked_list  //singly linked integer list
 		void reset();
 		node* head;
 		node* tail;
-		node* current =0;
 		size_t size=0; 
 	public:
 		void push_back(int); 
@@ -26,7 +25,7 @@ class linked_list  //singly linked integer list
 		void clear(); 
 		void set(size_t, int); 
 		bool isEmpty();
-		void push_back1(linked_list*, linked_list*); // 15. push another list to the end of source list
+		void push_back(linked_list*, linked_list*); // 15. push another list to the end of source list
 		linked_list(int element); 
 		linked_list(); 
 		~linked_list(); 

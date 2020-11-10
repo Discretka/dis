@@ -161,7 +161,7 @@ namespace UnitTest1
 			test2->push_back(4);
 			test2->push_front(1);
 			test2->push_back(2);
-			test->push_back1(test, test2);
+			test->push_back(test, test2);
 			Assert::AreEqual(test->at(8), 4);
 		}
 	};

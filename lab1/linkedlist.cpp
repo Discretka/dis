@@ -79,6 +79,7 @@ void linked_list::pop_back()
 	}
 	else
 	{
+		node* current = new node;
 		current = head;
 		while (current->next != tail)
 		{
@@ -101,6 +102,7 @@ void linked_list::pop_front()
 	}
 	else
 	{
+		node* current = new node;
 		current = head;
 		head = head->next;
 		delete current; size--;
@@ -108,8 +110,6 @@ void linked_list::pop_front()
 }
 void linked_list::insert(int element, size_t index)
 {
-	if (index < 0)
-		throw out_of_range("\nIndex is less then 0");
 	if (index > size)
 	{
 		throw out_of_range("\nIndex is greater than size of list");
@@ -119,6 +119,7 @@ void linked_list::insert(int element, size_t index)
 		push_front(element); 
 		size++;
 	}
+	node* current = new node;
 	current = head;
 	if (index != 0 && index <= size)
 	{
@@ -137,8 +138,8 @@ void linked_list::insert(int element, size_t index)
 }
 int linked_list::at(size_t index)
 {
+	node* current = new node;
 	current = head;
-	if (index < 0) throw out_of_range("\nIndex is less then 0");
 	if (index >= size) throw out_of_range("\nIndex is greater than size of list");
 	else
 	{
@@ -151,7 +152,6 @@ int linked_list::at(size_t index)
 }
 void linked_list::remove(size_t index)
 {
-	if (index < 0) throw out_of_range("\nIndex is less then 0");
 	if (index >= size) throw out_of_range("Index is greater than size of list");
 	if (index != 0)
 	{
@@ -185,6 +185,7 @@ void linked_list::print_to_console()
 	if (size < 1) throw out_of_range("List is empty");
 	else
 	{
+		node* current = new node;
 		current = head;
 		for (size_t i = 0; i < size; i++)
 		{
@@ -195,21 +196,24 @@ void linked_list::print_to_console()
 }
 void linked_list::clear()
 {
+	node* current = new node;
 	current = head;
-	for (size_t i = 0; i < size; i++)
+	size_t sizer = size;
+	for (size_t i = 0; i < sizer; i++)
 	{
 		node* interposed = current;
 		current = current->next;
 		delete interposed;
+		size--;
 	}
 	reset();
 }
 void linked_list::set(size_t index, int element)
 {
-	if (index < 0) throw out_of_range("\nIndex is less then 0");
 	if (index >= size) throw out_of_range("\nIndex is greater than size of list");
 	else
 	{
+		node* current = new node;
 		current = head;
 		for (size_t i = 0; i < index; i++) 
 		{
@@ -225,11 +229,15 @@ bool linked_list::isEmpty()
 	else 
 		return false;
 }
-void linked_list::push_back1(linked_list* first_list, linked_list* second_list)
+void linked_list::push_back(linked_list* first_list, linked_list* second_list)
 {
 	if (second_list->size == 0) return;
 	if (first_list->tail->next) first_list->tail = first_list->tail->next;
 	first_list->tail->next= second_list->head;
 	first_list->tail = second_list->tail;
 	size += second_list->size;
+
+	second_list->size = 0;
+	second_list->head = NULL;
+	second_list->head = NULL;
 }
